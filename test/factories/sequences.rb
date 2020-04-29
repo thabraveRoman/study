@@ -1,5 +1,5 @@
 # encoding: utf-8
-FactoryGirl.define do
+FactoryBot.define do
   sequence :int do |n|
     n
   end

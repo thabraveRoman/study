@@ -3,7 +3,7 @@ ruby '2.3.7'
 
 gem 'rake'
 gem 'minitest'
-gem 'factory_girl'
+gem 'factory_bot'
 gem 'coveralls', require: false
 gem 'rubocop', require: false
 gem 'rack'
