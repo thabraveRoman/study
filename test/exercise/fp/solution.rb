@@ -5,16 +5,16 @@ module Exercise
       # film["name"], film["rating_kinopoisk"], film["rating_imdb"],
       # film["genres"], film["year"], film["access_level"], film["country"]
       def rating(array)
-        sorted_films = array.select { |film| film["country"] > 1 }
-        films_rating = sorted_films.map { |film| film["rating_kinopisk"] > 0 }
-        sum_of_ratings = films_rating.reduce { |acc, item| acc + item }
-        result = sum_of_ratings % (sorted_films.reduce { |acc, item| acc + item})
+        sorted_array = array.select { |film| film["country"].to_s.include?(",") && film["rating_kinopoisk"].to_f > 0 }
+        sum_of_ratings = sorted_array.map { |film| film["rating_kinopoisk"].to_f }
+        total = sum_of_ratings.reduce(:+).to_f / sum_of_ratings.length
       end
 
       def chars_count(array, threshold)
-        film_select = array.select { |film| film["rating_kinipoisk"] > threshold }
-        char_select = film_select.map { |film| film["name"].include("и") }
-        total = char_select.reduce { |acc, item| acc + item.count("и") }
+        film_rating_select = array.select { |film| film["rating_kinopoisk"].to_f >= threshold }
+        film_char_select = film_rating_select.select { |film| film["name"].include?("и") }
+        film_char_count = film_char_select.map { |film| film["name"].count("и") }
+        total = film_char_count.reduce { |acc, item| acc + item } 
       end
     end
   end
