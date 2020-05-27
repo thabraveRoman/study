@@ -39,8 +39,8 @@ module Exercise
 
       # Написать свою функцию my_reduce
       def my_reduce(acc = nil, &func)
-        acc = acc.nil ? element : func.call(acc, element)
-        return acc 
+        my_each { |element| acc = acc.nil? ? element : func.call(acc, element) }
+        acc 
       end
 >>>>>>> fp2-solution
     end
