@@ -12,7 +12,9 @@ module Inatra
     def call(env)
     end
 
-    def method_missing(method_missing_name, path, &block)
+    def method_missing(missing_method_name, *args, &block)
+      func = @@handlers[missing_method_name]
+      func.call(args) if func 
     end
   end
 end
