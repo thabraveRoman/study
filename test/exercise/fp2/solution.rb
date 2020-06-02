@@ -14,21 +14,21 @@ module Exercise
       # Написать свою функцию my_map
       def my_map(&func)
         result = MyArray.new
-        self.my_each { |element| result << func.call(element) }
-        return result 
+        my_each { |element| result << func.call(element) }
+        result
       end
 
       # Написать свою функцию my_compact
       def my_compact
         result = MyArray.new
-        self.my_each { |element| element.nil? ? result : result << element }
-        return  result
+        my_each { |element| element.nil? ? result : result << element }
+        result
       end
 
       # Написать свою функцию my_reduce
       def my_reduce(acc = nil, &func)
         my_each { |element| acc = acc.nil? ? element : func.call(acc, element) }
-        acc 
+        acc
       end
     end
   end
