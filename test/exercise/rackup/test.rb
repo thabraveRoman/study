@@ -21,8 +21,15 @@ class RackTest < Test::Unit::TestCase
 
   def test_it_says_bye
     browser = Rack::Test::Session.new(Rack::MockSession.new(Inatra))
-    browser.get '/bye'
+    browser.post '/bye'
     assert browser.last_response.ok?
     assert_equal 'Bye Bye', browser.last_response.body
+  end
+
+  def test_it_handles_404
+    browser = Rack::Test::Session.new(Rack::MockSession.new(Inatra))
+    browser.get '/missing_method'
+    assert browser.last_response.not_found?
+    assert_equal 'Not Found', browser.last_response.body
   end
 end
