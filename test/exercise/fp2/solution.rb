@@ -14,15 +14,15 @@ module Exercise
       # Написать свою функцию my_map
       def my_map(&func)
         result = MyArray.new
-        my_each { |element| result << func.call(element) }
-        result
+        func_map = ->(acc, element) { acc << func.call(element) }
+        my_reduce(result, &func_map) 
       end
 
       # Написать свою функцию my_compact
       def my_compact
         result = MyArray.new
-        my_each { |element| element.nil? ? result : result << element }
-        result
+        func_compact = ->(acc, element) { element.nil? ? acc : acc << element }
+        my_reduce(result, &func_compact)
       end
 
       # Написать свою функцию my_reduce
