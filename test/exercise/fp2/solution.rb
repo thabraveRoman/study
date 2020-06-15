@@ -15,7 +15,7 @@ module Exercise
       def my_map(&func)
         result = MyArray.new
         func_map = ->(acc, element) { acc << func.call(element) }
-        my_reduce(result, &func_map) 
+        my_reduce(result, &func_map)
       end
 
       # Написать свою функцию my_compact
