@@ -13,16 +13,14 @@ module Exercise
 
       # Написать свою функцию my_map
       def my_map(&func)
-        result = MyArray.new
         func_map = ->(acc, element) { acc << func.call(element) }
-        my_reduce(result, &func_map)
+        my_reduce(MyArray.new, &func_map)
       end
 
       # Написать свою функцию my_compact
       def my_compact
-        result = MyArray.new
         func_compact = ->(acc, element) { element.nil? ? acc : acc << element }
-        my_reduce(result, &func_compact)
+        my_reduce(MyArray.new, &func_compact)
       end
 
       # Написать свою функцию my_reduce
