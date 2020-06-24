@@ -13,8 +13,16 @@ module Inatra
     end
 
     def method_missing(missing_method_name, *args, &block)
-      @handlers[missing_method_name] ||= {}
-      @handlers[missing_method_name][args[0]] = block
+      if args.length == 1
+        @handlers[missing_method_name] ||= {}
+        @handlers[missing_method_name][args[0]] = block
+      else
+        super
+      end
+    end
+
+    def respond_to_missing?(missing_method_name)
+      @handlers.include?(missing_method_name)
     end
   end
 end
